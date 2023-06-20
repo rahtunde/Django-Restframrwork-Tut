@@ -6,6 +6,7 @@ from products.models import Product
 from products.serializers import ProductSerializer
 
 
+
 @api_view(['POST'])
 def api_home(request, **args):
     """
