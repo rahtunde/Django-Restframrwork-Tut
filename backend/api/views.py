@@ -8,7 +8,7 @@ from products.serializers import ProductSerializer
 
 
 @api_view(['POST'])
-def api_home(request, **args):
+def api_home(request, *args, **kwargs):
     """
     DRF API VIEW
     """
