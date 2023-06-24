@@ -26,7 +26,6 @@ class ProductSerializer(serializers.ModelSerializer):
         ]
 
     def get_edit_url(self, obj):
-        # return f'api/products/{obj.pk}'
         request = self.context.get('request')
         if request is None:
             return None
