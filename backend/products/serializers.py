@@ -25,11 +25,23 @@ class ProductSerializer(serializers.ModelSerializer):
             'my_discount'
         ]
 
+    # def create(self, validated_data):
+    #     # email = validated_data.pop('email')
+    #     obj = super().create(validated_data)
+    #     # print(email, obj)
+    #     return obj
+    
+    # def update(self, instance, validated_data):
+    #     email = validated_data.pop('email')
+    #     return super().update(instance, validated_data)
+    
+
     def get_edit_url(self, obj):
         request = self.context.get('request')
         if request is None:
             return None
         return reverse("product_edit", kwargs= {"pk": obj.pk},request=request)
+    
     
     def get_my_discount(self, obj):
         if not hasattr(obj, 'id'):
