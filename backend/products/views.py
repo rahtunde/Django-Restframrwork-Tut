@@ -5,13 +5,13 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
 
-# from api.mixins import StaffEditorPermissionMixin
+from api.mixins import StaffEditorPermissionMixin
 from .models import Product
 from .serializers import ProductSerializer
 
 
 class ProductListCreateAPIView(
-    # StaffEditorPermissionMixin,
+    StaffEditorPermissionMixin,
     generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -28,7 +28,7 @@ product_list_create_view = ProductListCreateAPIView.as_view()
 
 
 class ProductDetailAPIView(
-    # StaffEditorPermissionMixin,
+    StaffEditorPermissionMixin,
     generics.RetrieveAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -41,7 +41,7 @@ product_detail_view = ProductDetailAPIView.as_view()
 
 
 class ProductUpdateAPIView(
-    # StaffEditorPermissionMixin,
+    StaffEditorPermissionMixin,
     generics.UpdateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -57,7 +57,7 @@ class ProductUpdateAPIView(
 product_update_view = ProductUpdateAPIView.as_view()
 
 
-class ProductDestroyAPIView(
+class ProductDestroyAPIView(StaffEditorPermissionMixin,
                             generics.DestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
