@@ -14,8 +14,8 @@ from .models import Product
 
 def validate_tiltle_no_hello(value):
     if "hello" in value.lower():
-        raise serializers.ValidationError("hello is not allowed")
+        raise serializers.ValidationError(f"{value} is not allowed")
     return value
 
 
-unique_product_title = UniqueValidator(queryset=Product.objects.all())
+unique_product_title = UniqueValidator(queryset=Product.objects.all(), lookup='iexact')
