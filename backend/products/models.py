@@ -1,3 +1,4 @@
+import random
 from django.conf import settings
 from django.db import models
 from django.db.models.query import QuerySet
@@ -7,6 +8,8 @@ from django.db.models import Q
 
 
 User = settings.AUTH_USER_MODEL
+
+TAGS_MODEL_VALUE = ['eletronics', 'cars', 'boats', 'movies', 'cameras']
 
 
 class ProductQuerySet(models.QuerySet):
@@ -44,7 +47,12 @@ class Product(models.Model):
 
     objects = ProductManger()
 
-
+    def is_public(self):
+        return self.public # return True or False
+    
+    def get_tags_list(self):
+        return [random.choice(TAGS_MODEL_VALUE)]
+    
     @property
     def sale_price(self):
         return "%.2f" %(float(self.price) * 0.8)
